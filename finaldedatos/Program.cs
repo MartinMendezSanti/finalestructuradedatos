@@ -47,7 +47,7 @@ namespace finalestructura
                 for (byte i = 0; i < cantidad; i++)
                 {
                     pedido = (int)cola.Dequeue();
-                    Console.WriteLine(pedido);
+                    Console.WriteLine("{0} - {1}", i+1, pedido);
                     cola.Enqueue(pedido);
                 }
             }
@@ -104,9 +104,19 @@ namespace finalestructura
                     string opcion_mayuscula = opcion.ToUpper();
                     if (opcion_mayuscula == "A")
                     {
-                        Console.WriteLine("Ingrese el nuevo número de pedido:");
-                        pedido = Convert.ToInt32(Console.ReadLine());
-                        cola.Enqueue(pedido);
+                        do
+                        {
+                            Console.WriteLine("Ingrese el nuevo n° de pedido");
+                            pedido = Convert.ToInt32(Console.ReadLine());
+                            if (pedido < 999 && pedido > 0)
+                            {
+                                cola.Enqueue(pedido);
+                            }
+                            else
+                            {
+                                Console.WriteLine("El n° de pedido debe ser mayor a 0 y menor a 999");
+                            }
+                        } while (pedido < 0 || pedido > 999);
                     }
                     if (opcion_mayuscula == "B")
                     {
